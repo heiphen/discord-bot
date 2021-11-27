@@ -10,6 +10,10 @@
   },
   "license": "MIT",
   "dependencies": {
+    "discord.js": "^13.3.1"
+  },
+  "devDependencies": {
+    "typescript": "^4.5.2",
     "tsc-watch": "^4.5.0"
   }
 }
