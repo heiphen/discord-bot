@@ -1,0 +1,15 @@
+{
+  "name": "discord",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:heiphen/discord-bot.git",
+  "author": "harshgoel05 <harshgoel05@gmail.com>",
+  "scripts": {
+    "start": "node build/index.js",
+    "dev": "npx tsc-watch --onSuccess \"node ./build/index.js\""
+  },
+  "license": "MIT",
+  "dependencies": {
+    "tsc-watch": "^4.5.0"
+  }
+}
