@@ -18,7 +18,7 @@ export function handleMemberJoin(
         { content: `${member}`, embeds: [createBasicEmbed(INFO.MEMBER_JOIN(member as GuildMember))] }
       );
       member.send(
-        `Please welcome <@${member.id}> to the Heiphen server! Please check out ${member.guild.channels.cache.get('914591677551902740')} for more info.`
+        `Welcome <@${member.id}> to the Heiphen server! Please check out ${member.guild.channels.cache.get('914591677551902740')} for more info.`
       );
     } catch (err) {
       serverLogger("error", "InternalError", err);
