@@ -1,9 +1,6 @@
 import { Message } from "discord.js";
 import { handleGetMemberCount } from "../helper/memberCount";
 import { COMMANDS } from "../utils/constants";
-import { serverLogger } from "../utils/logger";
-
-
 
 export async function handleIncomingChannelCommand(incomingMessage: Message) {
     try {
@@ -15,10 +12,10 @@ export async function handleIncomingChannelCommand(incomingMessage: Message) {
           break;
         }
         default:
-          serverLogger("user-error", incomingMessage.content, "Invalid Command");
+          console.log(`❌  ${new Date().toISOString()}    Invalid Command    ${incomingMessage.content}`);
           break;
       }
     } catch (err) {
-      serverLogger("error", incomingMessage.content, err);
+        console.log(`❌  ${new Date().toISOString()}    ${err}    ${incomingMessage.content}`);
     }
   };
