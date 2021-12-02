@@ -5,4 +5,6 @@ export const CONSTANTS = {
 export const COMMANDS = {
   prefix: "#bot",
   membercount: "membercount",
+  createcode: "createcode",
+  assignRole: "assignRole",
 };
