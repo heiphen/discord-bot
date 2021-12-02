@@ -20,7 +20,7 @@ export async function handleGetMemberCount(incomingMessage: Message) {
       .setDescription(
         `I dove deep into the server and counted the members for you! 🌊`
       )
-      .addField('Current Members', membersCount+'', true)
+      .addField('Current Members', membersCount?.toString(), true)
       .addField('Current Bots', botsCount+'', true)
       .setTimestamp()
       .setFooter(CONSTANTS.FOOTER);
