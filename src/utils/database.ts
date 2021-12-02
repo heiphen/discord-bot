@@ -1,7 +1,6 @@
 import { MongoClient } from "mongodb";
 
 let dbClient: MongoClient;
-let eventDbClient: MongoClient;
 
 export async function initDbClient() {
   try {
@@ -18,23 +17,4 @@ export async function getDbClient() {
     await initDbClient();
   }
   return dbClient;
-}
-
-export async function initEventDbClient() {
-  try {
-    eventDbClient = await MongoClient.connect(
-      process.env.EVENT_DATABASE_URI || ""
-    );
-    console.log("✔️   Connected to Event Database");
-    return eventDbClient;
-  } catch (error) {
-    throw error;
-  }
-}
-
-export async function getEventDbClient() {
-  if (!eventDbClient) {
-    await initEventDbClient();
-  }
-  return eventDbClient;
 }
