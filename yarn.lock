@@ -85,7 +85,7 @@
   "resolved" "https://registry.npmjs.org/base64-js/-/base64-js-1.5.1.tgz"
   "version" "1.5.1"
 
-"bson@^4.5.4":
+"bson@^4.6.0":
   "integrity" "sha512-8jw1NU1hglS+Da1jDOUYuNcBJ4cNHCFIqzlwoFNnsTOg2R/ox0aTYcTiBN4dzRa9q7Cvy6XErh3L8ReTEb9AQQ=="
   "resolved" "https://registry.npmjs.org/bson/-/bson-4.6.0.tgz"
   "version" "4.6.0"
@@ -245,16 +245,21 @@
     "@types/whatwg-url" "^8.2.1"
     "whatwg-url" "^11.0.0"
 
-"mongodb@^4.2.0":
-  "integrity" "sha512-lg3MJ9dAKxhogRnIB6/j63gfD7JryZwRC0nNzZ82RhENw4nCmscZVqRfOmNzTvSNndJx9ZhxZpm9JvnKuH/GTA=="
-  "resolved" "https://registry.npmjs.org/mongodb/-/mongodb-4.2.0.tgz"
-  "version" "4.2.0"
+"mongodb@^4.2.1":
+  "integrity" "sha512-nDC+ulM/Ea3Q2VG5eemuGfB7T4ORwrtKegH2XW9OLlUBgQF6OTNrzFCS1Z3SJGVA+T0Sr1xBYV6DMnp0A7us0g=="
+  "resolved" "https://registry.npmjs.org/mongodb/-/mongodb-4.2.1.tgz"
+  "version" "4.2.1"
   dependencies:
-    "bson" "^4.5.4"
+    "bson" "^4.6.0"
     "denque" "^2.0.1"
     "mongodb-connection-string-url" "^2.2.0"
   optionalDependencies:
     "saslprep" "^1.0.3"
+
+"nanoid@^3.1.30":
+  "integrity" "sha512-zJpuPDwOv8D2zq2WRoMe1HsfZthVewpel9CAvTfc/2mBD1uUT/agc5f7GHGWXlYkFvi1mVxe4IjvP2HNrop7nQ=="
+  "resolved" "https://registry.npmjs.org/nanoid/-/nanoid-3.1.30.tgz"
+  "version" "3.1.30"
 
 "node-cleanup@^2.1.2":
   "integrity" "sha1-esGavSl+Caf3KnFUXZUbUX5N3iw="
