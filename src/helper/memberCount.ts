@@ -29,9 +29,9 @@ export async function handleGetMemberCount(incomingMessage: Message) {
         { embeds: [memberCountEmbed] }
       );
 
-      console.log(`✔️  ${new Date().toISOString()}   success  ${incomingMessage.content}`);
+      console.log(`success  ${incomingMessage.content}`);
 
     } catch (err) {
-        console.log(`❌  ${new Date().toISOString()}   ${err}  ${incomingMessage.content}`);  
+        console.log(`${err}  ${incomingMessage.content}`);  
     }
   };
