@@ -1,6 +1,7 @@
 import { Message } from "discord.js";
 import { Collection } from "mongodb";
 import { handleCreateCode } from "../helper/createRoleCode";
+import { handleGetCount } from "../helper/getCount";
 import { handleGetMemberCount } from "../helper/memberCount";
 import { COMMANDS } from "../utils/constants";
 
@@ -15,6 +16,10 @@ export async function handleIncomingChannelCommand(incomingMessage: Message, use
         }
         case COMMANDS.createcode: {
           handleCreateCode(incomingMessage, userRoleCol);
+          break;
+        }
+        case COMMANDS.getCount: {
+          handleGetCount(incomingMessage, userRoleCol);
           break;
         }
         default:
