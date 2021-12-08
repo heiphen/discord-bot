@@ -8,9 +8,9 @@ export const handleCreateCode = async (incomingMessage: Message, userRoleCol: Co
     try {
         const userTypedRole = incomingMessage.content.split(/\s+/)[2];
         const code = nanoid().substr(0,6);
-    const newUser = await userRoleCol.findOne({id: incomingMessage.author.id});
+    const newUser = await userRoleCol.findOne({userIds: { $all: [incomingMessage.author.id] }, role: userTypedRole.substr(3,18)});
     if (newUser) {
-        incomingMessage.member?.send(`Your code has already been generated and sent to you. Please check again!`);
+        incomingMessage.member?.send(`You have been assigned with this role already!`);
     } else {
         const availableRole = incomingMessage.guild?.roles.cache.find(role => role.id === userTypedRole.substr(3,18));
         if (availableRole) {
@@ -21,7 +21,7 @@ export const handleCreateCode = async (incomingMessage: Message, userRoleCol: Co
 
             const read = await userRoleCol.insertOne(
                 {
-                    id: incomingMessage.author.id,
+                    userIds: [],
                     code: code,
                     role: availableRole.id,
                 });
