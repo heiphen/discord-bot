@@ -11,4 +11,5 @@ export const COMMANDS = {
   createcode: "createcode",
   assignRole: "assignRole",
   getCount: "getCount",
+  getCountAll: "getCountALl",
 };
