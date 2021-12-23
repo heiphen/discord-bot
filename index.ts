@@ -60,6 +60,11 @@ const createServer = async () => {
             }
         }
       }
+      if (message.channelId === CONSTANTS.INTRODUCE_CHANNEL_ID) {
+        const role = message.guild?.roles.cache.find(role => role.id === CONSTANTS.COMMUNITY_ROLE_ID);
+        message.guild?.members.cache.get(message.author.id).roles.add(role);
+        message.member?.send(`<@${message.author.id}> you have been assigned community role.`);
+      }
     }
   });
   
