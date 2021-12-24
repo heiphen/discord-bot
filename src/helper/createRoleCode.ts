@@ -19,14 +19,12 @@ export const handleCreateCode = async (
         `You have been assigned with this role already!`
       );
     } else {
-      const availableRole = incomingMessage.guild?.roles.cache.find(
-        (role) => role.id === userTypedRole.substr(3, 18)
-      );
-      if (availableRole) {
-        const channel = incomingMessage.guild?.channels.cache.find(
-          (ch: any) => ch.id === CONSTANTS.CODE_CHANNEL_ID
-        ) as TextChannel;
-        if (!channel) return;
+        const availableRole = incomingMessage.guild?.roles.cache.find(role => role.id === userTypedRole.substr(3,18));
+        if (availableRole && availableRole.id !== CONSTANTS.COMMUNITY_ROLE_ID) {
+            const channel = incomingMessage.guild?.channels.cache.find(
+                (ch: any) => ch.id === CONSTANTS.CODE_CHANNEL_ID
+            ) as TextChannel;
+            if (!channel) return;
 
         const read = await userRoleCol.insertOne({
           userIds: [],
