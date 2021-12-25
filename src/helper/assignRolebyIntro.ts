@@ -2,11 +2,11 @@ import { CONSTANTS } from '../utils/constants';
 
 export async function assignRoleOnIntroduction(message: any) {
   const role = message.guild?.roles.cache.find(
-    (role: any) => role.id === CONSTANTS.COMMUNITY_ROLE_ID
+    (role: any) => role.id == CONSTANTS.COMMUNITY_ROLE_ID
   );
   if (
     message.member.roles.cache.some(
-      (role: any) => role.name === CONSTANTS.COMMUNITY_ROLE_ID
+      (role: any) => role.id === CONSTANTS.COMMUNITY_ROLE_ID
     )
   )
     return;

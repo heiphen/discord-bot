@@ -6,30 +6,26 @@ import { handleGetMemberCount } from '../helper/memberCount';
 import { COMMANDS } from '../utils/constants';
 
 export async function handleIncomingChannelCommand(incomingMessage: Message) {
-  try {
-    const messageCommand = incomingMessage.content.split(/\s+/)[1];
-    switch (messageCommand) {
-      case COMMANDS.membercount: {
-        handleGetMemberCount(incomingMessage);
-        break;
-      }
-      case COMMANDS.createcode: {
-        handleCreateCode(incomingMessage);
-        break;
-      }
-      case COMMANDS.getCount: {
-        handleGetCount(incomingMessage);
-        break;
-      }
-      case COMMANDS.getCountAll: {
-        handleGetCountAll(incomingMessage);
-        break;
-      }
-      default:
-        console.log(`Invalid Command    ${incomingMessage.content}`);
-        break;
+  const messageCommand = incomingMessage.content.split(/\s+/)[1];
+  switch (messageCommand) {
+    case COMMANDS.membercount: {
+      handleGetMemberCount(incomingMessage);
+      break;
     }
-  } catch (err) {
-    console.log('Error:      ', err, incomingMessage.content);
+    case COMMANDS.createcode: {
+      handleCreateCode(incomingMessage);
+      break;
+    }
+    case COMMANDS.getCount: {
+      handleGetCount(incomingMessage);
+      break;
+    }
+    case COMMANDS.getCountAll: {
+      handleGetCountAll(incomingMessage);
+      break;
+    }
+    default:
+      console.log(`Invalid Command    ${incomingMessage.content}`);
+      break;
   }
 }

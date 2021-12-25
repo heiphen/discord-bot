@@ -16,27 +16,31 @@ import { initDbClient } from './src/utils/database';
   client.on('ready', () => console.log('Bot is online!'));
 
   client.on('messageCreate', async (message: Message) => {
-    if (!message.author.bot) {
-      if (message.content.split(/\s+/)[0] == COMMANDS.prefix) {
-        switch (message.channel.type) {
-          case 'GUILD_TEXT': {
-            handleIncomingChannelCommand(message);
-            break;
+    try {
+      if (!message.author.bot) {
+        if (message.content.split(/\s+/)[0] == COMMANDS.prefix) {
+          switch (message.channel.type) {
+            case 'GUILD_TEXT': {
+              handleIncomingChannelCommand(message);
+              break;
+            }
+            default: {
+              console.log(`Channel not supported`);
+            }
           }
-          default: {
-            console.log(`Channel not supported`);
-          }
+          return;
         }
-        return;
+        if (message.channelId === CONSTANTS.CODE_CHANNEL_ID) {
+          assignRoleByCode(message);
+          return;
+        }
+        if (message.channelId === CONSTANTS.INTRODUCE_CHANNEL_ID) {
+          assignRoleOnIntroduction(message);
+          return;
+        }
       }
-      if (message.channelId === CONSTANTS.CODE_CHANNEL_ID) {
-        assignRoleByCode(message);
-        return;
-      }
-      if (message.channelId === CONSTANTS.INTRODUCE_CHANNEL_ID) {
-        assignRoleOnIntroduction(message);
-        return;
-      }
+    } catch (err) {
+      console.log(err);
     }
   });
 
