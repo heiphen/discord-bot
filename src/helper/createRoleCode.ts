@@ -11,10 +11,14 @@ export const handleCreateCode = async (incomingMessage: Message) => {
     const found = await dbClient.db().collection('user-role').findOne({
       role: userRole,
     });
+    if (!incomingMessage.member?.roles.cache.has(CONSTANTS.ADMIN_ROLE_ID))
+      return incomingMessage.channel?.send('You are not authorized to use this command');
+
     if (found)
       return incomingMessage.channel?.send(
         `Hey <@${incomingMessage.author.id}>.\nYour code to get <@&${found.code}> role is - ${code}\n PS: It existed, so didn't create new one`
       );
+      
     if (!userRole)
       return incomingMessage.channel?.send('You missed out mentioning a role');
 
