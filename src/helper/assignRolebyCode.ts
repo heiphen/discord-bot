@@ -15,7 +15,7 @@ export async function assignRoleByCode(message: any) {
   const found = code.userIds.find(
     (element: any) => element === message.author.id
   );
-  if (found) return message.member?.send('You have already redemeed the code.');
+  if (found) return message.member?.send('You have already redeemed the code.');
 
   const role = message.guild?.roles.cache.find(
     (role: any) => role.id === code.role
@@ -35,6 +35,6 @@ export async function assignRoleByCode(message: any) {
   message.delete();
 
   message.member.send(
-    `<@${message.author.id}> You have been assigned <@&${role?.id}> role.`
+    `<@${message.author.id}> You have redeemed the code, and you have been assigned roles for it.`
   );
 }

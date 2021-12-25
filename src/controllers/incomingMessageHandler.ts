@@ -3,29 +3,32 @@ import { handleCreateCode } from '../helper/createRoleCode';
 import { handleGetCount } from '../helper/getCount';
 import { handleGetCountAll } from '../helper/getCountAll';
 import { handleGetMemberCount } from '../helper/memberCount';
+import { checkIfAdmin } from '../middlewares/roleAuth';
 import { COMMANDS } from '../utils/constants';
 
-export async function handleIncomingChannelCommand(incomingMessage: Message) {
-  const messageCommand = incomingMessage.content.split(/\s+/)[1];
-  switch (messageCommand) {
+export async function handleIncomingChannelCommand(message: Message) {
+  switch (message.content.split(/\s+/)[1]) {
     case COMMANDS.membercount: {
-      handleGetMemberCount(incomingMessage);
+      handleGetMemberCount(message);
       break;
     }
     case COMMANDS.createcode: {
-      handleCreateCode(incomingMessage);
+      checkIfAdmin(message);
+      handleCreateCode(message);
       break;
     }
     case COMMANDS.getCount: {
-      handleGetCount(incomingMessage);
+      checkIfAdmin(message);
+      handleGetCount(message);
       break;
     }
     case COMMANDS.getCountAll: {
-      handleGetCountAll(incomingMessage);
+      checkIfAdmin(message);
+      handleGetCountAll(message);
       break;
     }
     default:
-      console.log(`Invalid Command    ${incomingMessage.content}`);
+      console.log(`Invalid Command    ${message.content}`);
       break;
   }
 }

@@ -16,7 +16,7 @@ export function handleMemberJoin(member: GuildMember) {
         `Welcome <@${
           member.id
         }> to the server!\nPlease visit ${member.guild.channels.cache.get(
-          CONSTANTS.TARGET_CHANNEL_ID
+          CONSTANTS.INTRODUCE_CHANNEL_ID
         )} and introduce yourself, to unlock the server`
       )
       .setTimestamp()
@@ -27,7 +27,7 @@ export function handleMemberJoin(member: GuildMember) {
       `Welcome <@${
         member.id
       }> to the Heiphen server! Please visit ${member.guild.channels.cache.get(
-        CONSTANTS.TARGET_CHANNEL_ID
+        CONSTANTS.INTRODUCE_CHANNEL_ID
       )} and introduce yourself, to unlock the server`
     );
   } catch (err) {
