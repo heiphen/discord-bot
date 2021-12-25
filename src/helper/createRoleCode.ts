@@ -1,51 +1,50 @@
-import { Channel, Message, MessageEmbed, TextChannel } from "discord.js";
-import { Collection } from "mongodb";
-import { nanoid } from "nanoid";
-import { CONSTANTS } from "../utils/constants";
+import { Message, MessageEmbed, TextChannel } from 'discord.js';
+import { customAlphabet, nanoid } from 'nanoid';
+import { CONSTANTS } from '../utils/constants';
+import { getDbClient } from '../utils/database';
 
-export const handleCreateCode = async (
-  incomingMessage: Message,
-  userRoleCol: Collection
-) => {
+export const handleCreateCode = async (incomingMessage: Message) => {
   try {
-    const userTypedRole = incomingMessage.content.split(/\s+/)[2];
-    const code = nanoid().substr(0, 6);
-    const newUser = await userRoleCol.findOne({
-      userIds: { $all: [incomingMessage.author.id] },
-      role: userTypedRole.substr(3, 18),
+    const dbClient = await getDbClient();
+    const userRole = incomingMessage.content.split(/\s+/)[2];
+    const code = customAlphabet('abcdefghijklmnopqrstuvwxyz1234567890', 6)();
+    const found = await dbClient.db().collection('user-role').findOne({
+      role: userRole,
     });
-    if (newUser) {
-      incomingMessage.member?.send(
-        `You have been assigned with this role already!`
+    if (found)
+      return incomingMessage.channel?.send(
+        `Hey <@${incomingMessage.author.id}>.\nYour code to get <@&${found.code}> role is - ${code}\n PS: It existed, so didn't create new one`
       );
-    } else {
-        const availableRole = incomingMessage.guild?.roles.cache.find(role => role.id === userTypedRole.substr(3,18));
-        if (availableRole && availableRole.id !== CONSTANTS.COMMUNITY_ROLE_ID) {
-            const channel = incomingMessage.guild?.channels.cache.find(
-                (ch: any) => ch.id === CONSTANTS.CODE_CHANNEL_ID
-            ) as TextChannel;
-            if (!channel) return;
+    if (!userRole)
+      return incomingMessage.channel?.send('You missed out mentioning a role');
 
-        const read = await userRoleCol.insertOne({
-          userIds: [],
-          code: code,
-          role: availableRole.id,
-        });
+    const availableRole = incomingMessage.guild?.roles.cache.find(
+      (role) => role.id === userRole.substr(3, 18)
+    );
+    if (!availableRole) return incomingMessage.channel?.send('Invalid role');
+    const channel = incomingMessage.guild?.channels.cache.find(
+      (ch: any) => ch.id === CONSTANTS.CODE_CHANNEL_ID
+    ) as TextChannel;
+    if (!channel) return;
 
-        const msgEmbed = new MessageEmbed()
-          .setColor("BLUE")
+    await dbClient.db().collection('user-role').insertOne({
+      userIds: [],
+      code: code,
+      role: availableRole.id,
+    });
+
+    channel.send({
+      embeds: [
+        new MessageEmbed()
+          .setColor('BLUE')
           .setTitle(`New Code`)
           .setDescription(
-            `Hey <@${incomingMessage.author.id}>.\nYour code to get <@&${availableRole.id}> role is - ${code}\nKindly type the code in this channel itself to\n to get the role.`
+            `Hey <@${incomingMessage.author.id}>.\nYour code to get <@&${availableRole.id}> role is - ${code}\n`
           )
           .setTimestamp()
-          .setFooter(CONSTANTS.FOOTER);
-
-        channel.send({ embeds: [msgEmbed] });
-      } else {
-        incomingMessage.member?.send(`You entered invalid role type.`);
-      }
-    }
+          .setFooter(CONSTANTS.FOOTER),
+      ],
+    });
   } catch (err) {
     console.log(err);
   }

@@ -1,33 +1,28 @@
-import { Message } from "discord.js";
-import { Collection } from "mongodb";
-import { handleCreateCode } from "../helper/createRoleCode";
-import { handleGetCount } from "../helper/getCount";
-import { handleGetCountAll } from "../helper/getCountAll";
-import { handleGetMemberCount } from "../helper/memberCount";
-import { COMMANDS } from "../utils/constants";
+import { Message } from 'discord.js';
+import { handleCreateCode } from '../helper/createRoleCode';
+import { handleGetCount } from '../helper/getCount';
+import { handleGetCountAll } from '../helper/getCountAll';
+import { handleGetMemberCount } from '../helper/memberCount';
+import { COMMANDS } from '../utils/constants';
 
-export async function handleIncomingChannelCommand(
-  incomingMessage: Message,
-  userRoleCol: Collection
-) {
+export async function handleIncomingChannelCommand(incomingMessage: Message) {
   try {
     const messageCommand = incomingMessage.content.split(/\s+/)[1];
-
     switch (messageCommand) {
       case COMMANDS.membercount: {
         handleGetMemberCount(incomingMessage);
         break;
       }
       case COMMANDS.createcode: {
-        handleCreateCode(incomingMessage, userRoleCol);
+        handleCreateCode(incomingMessage);
         break;
       }
       case COMMANDS.getCount: {
-        handleGetCount(incomingMessage, userRoleCol);
+        handleGetCount(incomingMessage);
         break;
       }
       case COMMANDS.getCountAll: {
-        handleGetCountAll(incomingMessage, userRoleCol);
+        handleGetCountAll(incomingMessage);
         break;
       }
       default:
@@ -35,6 +30,6 @@ export async function handleIncomingChannelCommand(
         break;
     }
   } catch (err) {
-    console.log(`${err}    ${incomingMessage.content}`);
+    console.log('Error:      ', err, incomingMessage.content);
   }
 }
