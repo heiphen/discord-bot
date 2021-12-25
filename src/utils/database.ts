@@ -1,11 +1,11 @@
-import { MongoClient } from "mongodb";
+import { MongoClient } from 'mongodb';
 
 let dbClient: MongoClient;
 
 export async function initDbClient() {
   try {
-    dbClient = await MongoClient.connect(process.env.DATABASE_URL || "");
-    console.log("✔️   Connected to Database");
+    dbClient = await MongoClient.connect(process.env.DATABASE_URL || '');
+    console.log('✔️   Connected to Database');
     return dbClient;
   } catch (error) {
     throw error;

@@ -1,6 +1,6 @@
-require("dotenv").config();
-import { GuildMember, MessageEmbed, TextChannel } from "discord.js";
-import { CONSTANTS } from "../utils/constants";
+require('dotenv').config();
+import { GuildMember, MessageEmbed, TextChannel } from 'discord.js';
+import { CONSTANTS } from '../utils/constants';
 
 export function handleMemberJoin(member: GuildMember) {
   try {
@@ -10,7 +10,7 @@ export function handleMemberJoin(member: GuildMember) {
     if (!channel) return;
 
     const msgEmbed = new MessageEmbed()
-      .setColor("BLUE")
+      .setColor('BLUE')
       .setTitle(`A new member joined the server 🥳!`)
       .setDescription(
         `Welcome <@${
