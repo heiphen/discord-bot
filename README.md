@@ -5,7 +5,7 @@ Heiphen Discord Bot
 <p align="center">
     <img src="https://img.shields.io/badge/version-1.0.0-yellowgreen" alt="version 1.0.0"/>
     <img src="https://img.shields.io/badge/license-Apache-brightgreen" alt="license Apache"/>
-    <img src="https://img.shields.io/badge/author-SRMKZILLA-orange" alt="author Heiphen"/>
+    <img src="https://img.shields.io/badge/author-Heiphen-orange" alt="author Heiphen"/>
 </p>
 
 > To make this cool beep bot your own, refer to this [Wiki](https://github.com/srm-kzilla/jack/wiki/Make-Jack-your-own)
