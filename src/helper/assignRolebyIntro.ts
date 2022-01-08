@@ -11,7 +11,16 @@ export async function assignRoleOnIntroduction(message: any) {
   )
     return;
   if (!role) return;
-  message.guild?.members?.cache?.get(message?.author?.id).roles.add(role);
+
+  const unassignedRole = message.guild?.roles.cache.find(
+    (role: any) => role.id == CONSTANTS.UNASSIGNED_ROLE_ID
+  );
+  if (unassignedRole)
+    message.guild?.members?.cache
+      ?.get(message?.author?.id)
+      ?.roles?.remove(unassignedRole);
+
+  message.guild?.members?.cache?.get(message?.author?.id)?.roles?.add(role);
   message.member?.send(
     `Hi, <@${message.author.id}> nice to e-meet you, Now you have the access to the Heiphen community!`
   );
