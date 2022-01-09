@@ -18,11 +18,7 @@ export function handleMemberJoin(member: GuildMember) {
         .setColor('BLUE')
         .setTitle(`A new member joined the server 🥳!`)
         .setDescription(
-          `Welcome <@${
-            member.id
-          }> to the server!\nPlease visit ${member.guild.channels.cache.get(
-            CONSTANTS.INTRODUCE_CHANNEL_ID
-          )} and introduce yourself, to unlock the server`
+          `Welcome <@${member.id}> to the server!\nPlease visit <#${CONSTANTS.INTRODUCE_CHANNEL_ID}> and introduce yourself, to unlock the server`
         )
         .setTimestamp()
         .setFooter(CONSTANTS.FOOTER);
