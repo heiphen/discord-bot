@@ -8,7 +8,7 @@ Heiphen Discord Bot
     <img src="https://img.shields.io/badge/author-Heiphen-orange" alt="author Heiphen"/>
 </p>
 
-> To make this cool beep bot your own, refer to this [Wiki](https://github.com/srm-kzilla/jack/wiki/Make-Jack-your-own)
+> The cool discord bot, that looks after every activity on Heiphen
 
 
 ## Scripts 🔧
